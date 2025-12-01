@@ -1,9 +1,30 @@
-<DOCTYPE html>
-  <html>
-    <head>
-      
-    </head>
-    <body>
-      
-    </body>
-  </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background</title>
+    <style>
+        /* Ensure html and body take up the full height and width of the viewport */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            /* Hide both horizontal and vertical scroll bars */
+            overflow: hidden; 
+        }
+
+        body {
+            /* Set the background image and properties */
+            background-image: url('background.png'); /* Replace with your image path/URL */
+            background-repeat: no-repeat;
+            background-position: center; /* Center the image */
+            background-size: cover; /* Scale the image to cover the entire container */
+        }
+    </style>
+</head>
+<body>
+    <!-- Your content goes here -->
+</body>
+</html>
