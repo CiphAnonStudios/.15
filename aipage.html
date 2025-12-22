@@ -3,200 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Hub | CAS Cloak 2025</title>
+    <title>AI Hub | Ciphanon Studios</title>
     <link rel="stylesheet" href="cdnjs.cloudflare.com">
+    <link href="fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --bg: #0f172a;
-            --sidebar-bg: #1e293b;
-            --accent: #6366f1;
-            --text: #f8fafc;
-            --card: #1e293b;
-            --border: #334155;
-            --context-bg: #4f46e5; /* The color of the top context bar */
+            --bg: #0a0a0c;
+            --sidebar-bg: #121214;
+            --accent: #ff6b00; /* Vivid Cyber Orange */
+            --accent-glow: rgba(255, 107, 0, 0.4);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --border: #27272a;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             display: flex;
             height: 100vh;
             margin: 0;
             overflow: hidden;
         }
 
-        /* Sidebar Styling */
+        /* Sidebar: High-Tech Look */
         .sidebar {
-            width: 260px;
+            width: 320px;
             background-color: var(--sidebar-bg);
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            transition: all 0.3s ease;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+            z-index: 10;
         }
 
-        .sidebar h2 {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
+        .sidebar-header {
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(255,107,0,0.1) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
             color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 15px;
         }
 
+        .disclaimer {
+            font-size: 11px;
+            color: #ff9d00;
+            background: rgba(255, 157, 0, 0.1);
+            padding: 12px;
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+            line-height: 1.4;
+        }
+
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+
+        /* Category & Buttons */
+        .category-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin: 25px 0 12px;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
         .ai-button {
-            background: transparent;
-            color: var(--text);
+            width: 100%;
+            background: var(--glass);
+            color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 12px 15px;
+            padding: 14px 16px;
             border-radius: 12px;
             margin-bottom: 10px;
             cursor: pointer;
-            text-align: left;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .ai-button:hover {
-            background: var(--accent);
             border-color: var(--accent);
-            transform: translateY(-2px);
+            background: rgba(255, 107, 0, 0.05);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateX(5px);
         }
 
-        /* Main Content Area */
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #000; /* Dark background for iframe area */
+        .rating-badge {
+            background: var(--accent);
+            color: #000;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
         }
 
-        /* NEW: The Context Bar at the top of the page */
+        /* Content Area & Context Bar */
+        .content-area { flex: 1; display: flex; flex-direction: column; }
+
         .context-bar {
-            background: var(--context-bg);
-            color: white;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 500;
+            background: rgba(18, 18, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 25px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 100;
+            gap: 15px;
         }
 
-        .context-bar i {
-            font-size: 16px;
-        }
+        .context-icon { color: var(--accent); font-size: 1.2rem; }
 
-        /* Iframe Styling */
-        .iframe-container {
-            flex: 1;
-            position: relative;
-        }
+        #contextText { font-size: 14px; color: var(--text-dim); }
+        #contextText strong { color: var(--accent); font-size: 16px; }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: white;
-        }
+        .iframe-container { flex: 1; position: relative; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        .controls {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 101;
-        }
-
-        .ctrl-btn {
-            background: rgba(15, 23, 42, 0.8);
-            color: white;
-            border: 1px solid var(--border);
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ctrl-btn:hover { background: var(--accent); }
-
-        .hidden { display: none !important; }
+        /* Custom Scrollbar */
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <h2><i class="fas fa-robot"></i> AI Directory</h2>
-        
-        <!-- Button 1: Updated with your local path -->
-        <button class="ai-button" onclick="loadAI('./aiPage/duckai.html', 'DuckDuckGo AI', 'Privacy-focused AI interface. Access GPT-4o and Claude 3 Opus without tracking.')">
-            <i class="fas fa-user-secret"></i> DuckDuckGo AI
-        </button>
-
-        <button class="ai-button" onclick="loadAI('https://chatgpt.com', 'ChatGPT', 'Advanced conversational AI by OpenAI for coding, writing, and analysis.')">
-            <i class="fas fa-bolt"></i> ChatGPT
-        </button>
-
-        <button class="ai-button" onclick="loadAI('https://claude.ai', 'Claude AI', 'Anthropic\'s AI known for high-quality reasoning and safe, helpful responses.')">
-            <i class="fas fa-feather-alt"></i> Claude AI
-        </button>
-    </div>
-
-    <!-- Main View Area -->
-    <div class="content-area">
-        
-        <!-- The Context Bar -->
-        <div class="context-bar" id="contextBar">
-            <i class="fas fa-info-circle"></i>
-            <span id="contextText">Please select an AI model from the sidebar to view context and start chatting.</span>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fas fa-microchip"></i> AI CORE</div>
+            <div class="disclaimer">
+                <strong>SECURE NODE:</strong> Use Ciphanon Studios or a Proxy to bypass local restrictions.
+            </div>
         </div>
 
-        <div class="iframe-container" id="iframeContainer">
-            <div class="controls">
-                <button class="ctrl-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
-                    <i class="fas fa-columns"></i>
-                </button>
-            </div>
+        <div class="sidebar-scroll">
+            <span class="category-label">Primary Access</span>
+            <button class="ai-button" onclick="loadAI('./aiPage/duckai.html', 'DuckDuckGo AI', 'Private search with integrated AI features.', '95')">
+                <span>DuckDuckGo AI</span><span class="rating-badge">95</span>
+            </button>
+
+            <span class="category-label">Research & Writing</span>
+            <button class="ai-button" onclick="loadAI('https://otter.ai', 'Otter AI', 'Neural meeting notes & real-time audio analysis.', '78')">
+                <span>Otter.ai</span><span class="rating-badge">78</span>
+            </button>
+            <button class="ai-button" onclick="loadAI('https://www.hemingwayapp.com', 'Hemingway', 'AI-assisted writing clarity and bold styling.', '84')">
+                <span>Hemingway</span><span class="rating-badge">84</span>
+            </button>
+            <button class="ai-button" onclick="loadAI('https://pdf.ai', 'PDF.ai', 'Dynamic document interrogation via LLM.', '76')">
+                <span>PDF.ai</span><span class="rating-badge">76</span>
+            </button>
+
+            <span class="category-label">Logic & Science</span>
+            <button class="ai-button" onclick="loadAI('mathsolver.microsoft.com', 'Microsoft Math', 'Neural network mathematical problem solving.', '92')">
+                <span>MS Math</span><span class="rating-badge">92</span>
+            </button>
+            <button class="ai-button" onclick="loadAI('https://www.geogebra.org', 'GeoGebra', 'Visualizing complex geometric algorithms.', '92')">
+                <span>GeoGebra</span><span class="rating-badge">92</span>
+            </button>
+            <button class="ai-button" onclick="loadAI('https://www.wolframalpha.com', 'WolframAlpha', 'Computational knowledge engine.', '85')">
+                <span>Wolfram</span><span class="rating-badge">85</span>
+            </button>
+
+            <span class="category-label">Productivity</span>
+            <button class="ai-button" onclick="loadAI('https://apps.ankiweb.net', 'Anki', 'Spaced-repetition neural flashcards.', '94')">
+                <span>AnkiWeb</span><span class="rating-badge">94</span>
+            </button>
+            <button class="ai-button" onclick="loadAI('https://quizlet.com', 'Quizlet', 'Global learning & textbook neural database.', '85')">
+                <span>Quizlet</span><span class="rating-badge">85</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <div class="context-bar">
+            <div class="context-icon"><i class="fas fa-terminal"></i></div>
+            <div id="contextText">Awaiting input... Select an AI module to initialize.</div>
+        </div>
+        <div class="iframe-container">
             <iframe id="mainFrame" src="about:blank"></iframe>
         </div>
     </div>
 
     <script>
-        const frame = document.getElementById('mainFrame');
-        const contextText = document.getElementById('contextText');
-        const sidebar = document.getElementById('sidebar');
-
-        /**
-         * Logic to switch the iframe and the top context bar info
-         */
-        function loadAI(url, title, info) {
-            // Update Iframe
-            frame.src = url;
-            
-            // Update Context Bar
-            contextText.innerHTML = `<strong>${title}:</strong> ${info}`;
+        function loadAI(url, title, info, rating) {
+            document.getElementById('mainFrame').src = url;
+            document.getElementById('contextText').innerHTML =
+                `<strong>${title}</strong> [SYST_RATING: ${rating}%] &nbsp;&raquo;&nbsp; ${info}`;
         }
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('hidden');
-        }
-
-        // Optional: Auto-load the first AI tool on page load
-        window.onload = () => {
-            // Uncomment the line below if you want DuckAI to load automatically:
-            // loadAI('./aiPage/duckai.html', 'DuckDuckGo AI', 'Privacy-focused AI interface.');
-        };
     </script>
-
 </body>
 </html>
