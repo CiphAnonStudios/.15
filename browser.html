@@ -499,21 +499,25 @@
             tab.elements.titleEl.textContent = tab.title;
 
             // replace content
-            const wrapper = tab.elements.contentEl;
-            if (tab.isHomepage) {
-                wrapper.innerHTML = `
-                    <div class="homepage-content" role="main">
-                        <h1>CAS Cloak</h1>
-                        <input class="homepage-search-input" placeholder="Search or type URL" aria-label="Homepage search">
-                        <button>ai</button
-                        <div class="homepage-links">
-                            <div class="home-link" data-url="https://blockersgotbugsfr.github.io/GreenFieldInfinite/"><img src="https://www.google.com/s2/favicons?domain=blockersgotbugsfr.github.io/GreenFieldInfinite/" alt=""> Green Field Infinite</div>
-                            <div class="home-link" data-url="https://www.roblox.com"><img src="https://www.google.com/s2/favicons?domain=roblox.com" alt=""> Roblox</div>
-                            <div class="home-link" data-url="https://www.tiktok.com"><img src="https://www.google.com/s2/favicons?domain=tiktok.com" alt=""> TikTok</div>
-                            <div class="home-link" data-url="https://www.google.com"><img src="https://www.google.com/s2/favicons?domain=google.com" alt=""> Google</div>
-                        </div>
-                    </div>
-                `;
+           const wrapper = tab.elements.contentEl;
+if (tab.isHomepage) {
+    wrapper.innerHTML = `
+        <div class="homepage-content" role="main">
+            <h1>CAS Cloak</h1>
+            <div class="search-container" style="position: relative; display: flex; align-items: center;">
+                <input class="homepage-search-input" placeholder="Search or type URL" aria-label="Homepage search" style="width: 100%; padding-right: 40px;">
+                <button class="search-submit-btn" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer;">
+                    🔍
+                </button>
+            </div>
+            <div class="homepage-links">
+                <div class="home-link" data-url="https://blockersgotbugsfr.github.io/GreenFieldInfinite/"><img src="https://www.google.com/s2/favicons?domain=blockersgotbugsfr.github.io/GreenFieldInfinite/" alt=""> Green Field Infinite</div>
+                <div class="home-link" data-url="https://www.roblox.com"><img src="https://www.google.com/s2/favicons?domain=roblox.com" alt=""> Roblox</div>
+                <div class="home-link" data-url="https://www.tiktok.com"><img src="https://www.google.com/s2/favicons?domain=tiktok.com" alt=""> TikTok</div>
+                <div class="home-link" data-url="https://www.google.com"><img src="https://www.google.com/s2/favicons?domain=google.com" alt=""> Google</div>
+            </div>
+        </div>
+    `;
                 // reattach events
                 const hInput = wrapper.querySelector('.homepage-search-input');
                 hInput.addEventListener('keypress', (e)=> { if (e.key === 'Enter') { const val = e.target.value.trim(); if (val) loadUrlInTab(id, val); } });
