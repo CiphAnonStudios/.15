@@ -146,16 +146,8 @@
     padding: 10px 20px;
     border: none;
     /* Removed cursor: pointer here because clicks don't register on the button anymore */
-       transition: transform 0.3s ease-in-out;
 }
 
-.overlay-button:hover {
-    /* GROW EFFECT: scale(1.1) increases size by 10% */
-    /* NOTE: We must keep translate(-50%, -50%) so it stays centered */
-    transform: translate(-50%, -50%) scale(1.1);
-    
-    background-color: #45a049; /* Optional: darken slightly on hover */
-}
 
   #ai-button {
             display: flex;
@@ -199,7 +191,8 @@
  <div id="blooket-cheats">
     <!-- Changed the onclick to the correct function name -->
     <img id="moving-image" src="./asset/blooketcheats1.png" alt="Description of the image content" onclick="moveImage()">
-    <button id="moving-image" class="overlay-button">Click Me</button>
+    <button class="overlay-button">Click Me</button>
+ </img>
 </div>
 
 
