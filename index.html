@@ -188,77 +188,6 @@
             margin-right: 8px;
         }
 
-        :root {
-  --vlt-width: 80vw; /* Adjust for "large" size */
-  --vlt-bg: #ffffff;
-  --vlt-transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Base Panel Styles */
-.vlt-panel-container {
-  position: fixed;
-  top: 0;
-  left: calc(var(--vlt-width) * -1); /* Hide off-screen */
-  width: var(--vlt-width);
-  height: 100vh;
-  background: var(--vlt-bg);
-  z-index: 9999;
-  box-shadow: 15px 0 50px rgba(0, 0, 0, 0.2);
-  transition: transform var(--vlt-transition);
-  padding: 40px;
-  overflow-y: auto;
-}
-
-/* Sliding Trigger Class */
-.vlt-panel-container.vlt-is-visible {
-  transform: translateX(var(--vlt-width));
-}
-
-/* Button Grid Styling */
-.vlt-action-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 50px;
-}
-
-.vlt-jumbo-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 20px;
-  border-radius: 16px;
-  border: 2px solid #eee;
-  background: #fcfcfc;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.vlt-jumbo-btn:hover {
-  background: #f0f7ff;
-  border-color: #007bff;
-  transform: translateY(-4px);
-}
-
-.vlt-btn-icon { font-size: 2.5rem; margin-bottom: 10px; }
-.vlt-btn-text { font-weight: bold; font-size: 1.1rem; }
-
-/* Backdrop Shade */
-.vlt-panel-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
-  z-index: 9998;
-}
-
-.vlt-panel-overlay.vlt-is-visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
     </style>
 </head>
 <body>
@@ -296,41 +225,7 @@
         </svg>
         AI
     </a>
-
-
-<!-- Large Action Panel -->
-<div id="vlt_sliding_panel" class="vlt-panel-container">
-  <div class="vlt-panel-content">
-    <div class="vlt-panel-header">
-      <h2 class="vlt-panel-title">Workspace Actions</h2>
-      <button id="vlt_close_panel" class="vlt-panel-close-btn">&times;</button>
-    </div>
-
-    <!-- Grid of Large Buttons -->
-    <div class="vlt-action-grid">
-      <button class="vlt-jumbo-btn">
-        <span class="vlt-btn-icon">⚡</span>
-        <span class="vlt-btn-text">Primary Task</span>
-      </button>
-      <button class="vlt-jumbo-btn">
-        <span class="vlt-btn-icon">📁</span>
-        <span class="vlt-btn-text">File Manager</span>
-      </button>
-      <button class="vlt-jumbo-btn">
-        <span class="vlt-btn-icon">📈</span>
-        <span class="vlt-btn-text">Reports</span>
-      </button>
-      <button class="vlt-jumbo-btn">
-        <span class="vlt-btn-icon">⚙️</span>
-        <span class="vlt-btn-text">Settings</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Backdrop Shade -->
-<div id="vlt_panel_overlay" class="vlt-panel-overlay"></div>
-
+    
     <script>
         const iframeEl = document.getElementById('content-frame');
         const iframeContainerEl = document.getElementById('iframe-container');
@@ -386,22 +281,6 @@
         // Toggle the 'moved-right' class on the *image* only
         movingImage.classList.toggle('moved-right');
     }
-
-        const vltPanel = document.getElementById('vlt_sliding_panel');
-const vltOverlay = document.getElementById('vlt_panel_overlay');
-const vltCloseBtn = document.getElementById('vlt_close_panel');
-
-function vltTogglePanel() {
-  vltPanel.classList.toggle('vlt-is-visible');
-  vltOverlay.classList.toggle('vlt-is-visible');
-}
-
-// Logic to close when the X or the background is clicked
-vltCloseBtn.addEventListener('click', vltTogglePanel);
-vltOverlay.addEventListener('click', vltTogglePanel);
-
-// Export function if using modules, otherwise it's global
-window.vltTogglePanel = vltTogglePanel;
 
     </script>
 </body>
