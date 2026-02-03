@@ -1,40 +1,37 @@
-<!doctype html>
-<meta charset="utf-8">
-<title>Drag-to-Bookmarklet Button</title>
-<style>
-  body{font-family:system-ui,Segoe UI,Roboto,Arial;padding:20px}
-  .btn{display:inline-block;padding:10px 14px;background:#e11d48;color:#fff;border-radius:9999px;text-decoration:none;cursor:grab;font-weight:600}
-  .btn svg{vertical-align:middle;margin-right:8px}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Bookmark Button</title>
+    <style>
+        .draggable {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: grab;
+        }
+        .draggable:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <a id="bookmark" class="draggable" href="javascript:void(0);" draggable="true">Drag to Bookmark</a>
 
-<p>Drag the button to your bookmarks bar (or click to copy the code).</p>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const bookmark = document.getElementById("bookmark");
 
-<a id="bookmarkBtn" class="btn"
-   href="javascript:(()=>{let p=document.getElementById('bmPanel');if(p){p.style.display=p.style.display==='none'?'block':'none';return;}p=document.createElement('div');p.id='bmPanel';p.style.cssText='position:fixed;top:100px;left:100px;width:400px;height:300px;background:#111;border:2px solid #555;z-index:9999999;resize:both;overflow:hidden;font-family:Arial';let h=document.createElement('div');h.style.cssText='height:30px;background:#222;color:#fff;cursor:move;display:flex;align-items:center;justify-content:space-between;padding:0 6px;user-select:none';h.innerHTML=\"<span>CiphAnon Studios Ai Panel Bookmarklet</span><button id='bmHide' style='background:#444;color:#fff;border:none;cursor:pointer'>✕</button>\";let f=document.createElement('iframe');f.src='https://ciphanonstudios.github.io/.11/aiPage/duckai.html';f.style.cssText='width:100%;height:calc(100% - 30px);border:none;background:#fff';p.appendChild(h);p.appendChild(f);document.body.appendChild(p);document.getElementById('bmHide').onclick=()=>p.style.display='none';let dx=0,dy=0,drag=false;h.onmousedown=e=>{drag=true;dx=e.clientX-p.offsetLeft;dy=e.clientY-p.offsetTop};document.onmousemove=e=>{if(drag){p.style.left=e.clientX-dx+'px';p.style.top=e.clientY-dy+'px'}};document.onmouseup=()=>drag=false})();"
-   draggable="true" title="Drag to bookmarks bar">
-  <svg class="w-5 h-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-  CiphAnon AI Panel
-</a>
-
-<script>
-const btn = document.getElementById('bookmarkBtn');
-const code = btn.getAttribute('href');
-
-// Many browsers convert dragged javascript: links into normal bookmarks (security).
-// If drag fails, clicking the button copies the bookmarklet string so you can create a bookmark manually.
-btn.addEventListener('click', (e)=>{
-  e.preventDefault();
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(code).then(()=>alert('Bookmarklet copied. Create a new bookmark and paste it into the URL field.'), ()=>prompt('Copy this code manually:', code));
-  } else {
-    prompt('Copy this code manually:', code);
-  }
-});
-
-// Optional: set drag data to include javascript: href — some browsers will accept it.
-btn.addEventListener('dragstart', (e)=>{
-  e.dataTransfer.setData('text/plain', code);
-  e.dataTransfer.setData('text/uri-list', code);
-  e.dataTransfer.setData('text/html', `<a href="${code}">CiphAnon AI Panel</a>`);
-});
-</script>
+            // Set up the dragstart event
+            bookmark.addEventListener("dragstart", function (event) {
+                const url = "javascript:javascript:(()=>{let p=document.getElementById("bmPanel");if(p){p.style.display=p.style.display==="none"?"block":"none";return;}p=document.createElement("div");p.id="bmPanel";p.style.cssText="position:fixed;top:0px;left:0px;width:800px;height:600px;background:#E29B18;border:2px solid #555;z-index:9999999;resize:both;overflow:hidden;font-family:Arial";let h=document.createElement("div");h.style.cssText="height:30px;background:#222;color:#fff;cursor:move;display:flex;align-items:center;justify-content:space-between;padding:0 6px;user-select:none";h.innerHTML='<span>CiphAnon Studios Ai Panel Bookmarklet  <h>-<b> P</b> to hide panel</h> </span><button id="bmHide" style="background:#444;color:#fff;border:none;cursor:pointer">✕</button>';let f=document.createElement("iframe");f.src="https://ciphanonstudios.github.io/.11/aiPage/duckai.html";f.style.cssText="width:100%;height:calc(100% - 30px);border:none;background:#fff";p.appendChild(h);p.appendChild(f);document.body.appendChild(p);document.getElementById("bmHide").onclick=()=>p.style.display="none";document.addEventListener('keydown',(event)=>{if(event.key==='p'||event.key==='P'){p.style.display=p.style.display==="none"?"block":"none";}});let dx=0,dy=0,drag=false;h.onmousedown=e=>{drag=true;dx=e.clientX-p.offsetLeft;dy=e.clientY-p.offsetTop};document.onmousemove=e=>{if(drag){p.style.left=e.clientX-dx+'px';p.style.top=e.clientY-dy+'px'}};document.onmouseup=()=>drag=false})();"; // Your JavaScript code here
+                event.dataTransfer.setData("text/plain", url);
+                event.dataTransfer.effectAllowed = "copy";
+            });
+        });
+    </script>
+</body>
+</html>
