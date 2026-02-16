@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copy Code and Instructions</title>
+    <title>Copy Code and Instructions with Video</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            display: flex;
+        }
+        .content {
+            flex: 1;
+            margin-right: 20px;
         }
         #codeText {
             padding: 10px;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
             margin-bottom: 15px;
-            white-space: pre-wrap; /* Maintain line breaks */
+            white-space: pre-wrap;
         }
         #copyButton {
             padding: 10px 20px;
@@ -31,34 +36,46 @@
         .instructions, .videoLink {
             margin-bottom: 20px;
         }
+        video {
+            width: 300px; /* Width of the video */
+            height: auto;
+            border: 1px solid #ccc; /* Optional: for styling */
+        }
     </style>
 </head>
 <body>
-    <h1>Instructions for Task</h1>
-    
-    <div class="instructions">
-        <h2>How to Do Something</h2>
-        <p>Follow these steps to achieve the desired outcome:</p>
-        <ol>
-            <li>Step 1: Description of step one.</li>
-            <li>Step 2: Description of step two.</li>
-            <li>Step 3: Description of step three.</li>
-        </ol>
+    <div class="content">
+        <h1>Instructions for Task</h1>
+        
+        <div class="instructions">
+            <h2>How to Do Something</h2>
+            <p>Follow these steps to achieve the desired outcome:</p>
+            <ol>
+                <li>Step 1: Description of step one.</li>
+                <li>Step 2: Description of step two.</li>
+                <li>Step 3: Description of step three.</li>
+            </ol>
+        </div>
+
+        <div id="codeText">
+            // Your code snippet goes here
+            function example() {
+                console.log("Hello, World!");
+            }
+        </div>
+        
+        <button id="copyButton">Copy Code</button>
+        
+        <div class="videoLink">
+            <h2>Watch the Video Tutorial</h2>
+            <a href="https://example.com/video" target="_blank">Click here to watch the video</a>
+        </div>
     </div>
 
-    <div id="codeText">
-        // Your code snippet goes here
-        function example() {
-            console.log("Hello, World!");
-        }
-    </div>
-    
-    <button id="copyButton">Copy Code</button>
-    
-    <div class="videoLink">
-        <h2>Watch the Video Tutorial</h2>
-        <a href="https://example.com/video" target="_blank">Click here to watch the video</a>
-    </div>
+    <video autoplay loop muted>
+        <source src="https://www.example.com/your-video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
 
     <script>
         document.getElementById('copyButton').addEventListener('click', function() {
