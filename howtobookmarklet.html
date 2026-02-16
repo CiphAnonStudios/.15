@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Code and Instructions</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #codeText {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            white-space: pre-wrap; /* Maintain line breaks */
+        }
+        #copyButton {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        #copyButton:hover {
+            background-color: #0056b3;
+        }
+        .instructions, .videoLink {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Instructions for Task</h1>
+    
+    <div class="instructions">
+        <h2>How to Do Something</h2>
+        <p>Follow these steps to achieve the desired outcome:</p>
+        <ol>
+            <li>Step 1: Description of step one.</li>
+            <li>Step 2: Description of step two.</li>
+            <li>Step 3: Description of step three.</li>
+        </ol>
+    </div>
+
+    <div id="codeText">
+        // Your code snippet goes here
+        function example() {
+            console.log("Hello, World!");
+        }
+    </div>
+    
+    <button id="copyButton">Copy Code</button>
+    
+    <div class="videoLink">
+        <h2>Watch the Video Tutorial</h2>
+        <a href="https://example.com/video" target="_blank">Click here to watch the video</a>
+    </div>
+
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const code = document.getElementById('codeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }, (err) => {
+                console.error('Error copying text: ', err);
+            });
+        });
+    </script>
+</body>
+</html>
