@@ -41,6 +41,34 @@
             height: auto;
             border: 1px solid #ccc; /* Optional: for styling */
         }
+         #ai-buttonCopy {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #18aada;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            font-size: 18px;
+             z-index: 100;
+      position: fixed; /* Positions it relative to the viewport */
+            top: 22px;   /* Place it near the bottom of the screen */
+            left: 115px;     /* Place it near the left of the screen */
+            z-index: 1000;
+        }
+        
+
+        #ai-buttonCopy:hover {
+            background-color: #3700b3;
+            transform: scale(1.05);
+        }
+
+        #ai-buttonCopy:active {
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body>
